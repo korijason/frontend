@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 const Navbar: React.FC = () => {
   return (
     <nav className="bg-white text-green-700 py-4 px-6 flex justify-between items-center">
-      <h1 className="text-lg font-bold">MyFedha</h1>
-      <img src="money-back.png" alt="MyFedha Logo" className="w-12 h-12" />
+      <div className="flex flex-row items-center">
+        <img src="money-back.png" alt="MyFedha Logo" className="w-12 h-12" />
+        <h1 className="text-lg font-bold">MyFedha</h1>
+      </div>
       <div className="flex space-x-4">
         <Link
           to="/my-finances"

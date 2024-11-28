@@ -1,8 +1,8 @@
-// pages/myfinances.tsx
+// pages Homespace.tsx
 
 import SideNav from "../components/SideNav";
 
-const MyFinances = () => {
+const Homespace = () => {
   return (
     <div className="flex">
       <SideNav />
@@ -16,4 +16,4 @@ const MyFinances = () => {
   );
 };
 
-export default MyFinances;
+export default Homespace;
