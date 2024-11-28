@@ -3,7 +3,10 @@
 import FooterNav from "../components/FooterNav";
 import Navbar from "../components/Navbar";
 import IncomeVSExpensesChart from "../components/IncomeVSExpensesChart";
-import ExpensesChart from "../components/ExpensesChart";
+import ExpensesBarChart from "../components/ExpensesBarChart";
+import MonthlyExpensesBarChart from "../components/MonthlyExpenses";
+
+
 
 
 const MyFinances = () => {
@@ -22,7 +25,8 @@ const MyFinances = () => {
           {/* You can display either Budgets, Incomes, or Expenses here based on the route */}
 
           <IncomeVSExpensesChart />
-          <ExpensesChart />
+          <ExpensesBarChart />
+          <MonthlyExpensesBarChart />
           <FooterNav />
         </div>
     

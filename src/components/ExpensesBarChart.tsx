@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
-import { getExpenses } from '../services/expenseServices'; // Make sure these are correct paths
-import { getBudgets } from '../services/budgetServices'; // Make sure this is correct
+import { getExpenses} from '../services/expenseServices'; // Make sure these are correct paths
+import { getBudgets } from '../services/budgetServices';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 

@@ -2,8 +2,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import HeroSection from "../components/Herosection";
-import QuickStats from "../components/QuickStats";
-import GraphOverview from "../components/GraphOverview";
 
 const Dashboard: React.FC = () => {
   return (
@@ -11,8 +9,6 @@ const Dashboard: React.FC = () => {
       <Navbar />
       <HeroSection />
       <div className="p-6">
-        <QuickStats />
-        <GraphOverview />
       </div>
     </div>
   );

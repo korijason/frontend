@@ -6,9 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MyFedha</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Initialize AOS library for scroll animations
+      AOS.init({
+          duration: 1000,  // Animation duration
+          easing: 'ease-in-out',  // Animation easing
+          once: true  // Whether to animate only once when scrolling into view
+      });
+  </script>
   </body>
 </html>
