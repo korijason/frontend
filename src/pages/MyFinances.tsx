@@ -6,7 +6,10 @@ import IncomeVSExpensesChart from "../components/IncomeVSExpensesChart";
 import ExpensesBarChart from "../components/ExpensesBarChart";
 import MonthlyExpensesBarChart from "../components/MonthlyExpenses";
 import ExpenseDonut from "../components/ExpDonut";
-import ExpenseDonutChart from "../components/ExpenseDonut";
+import { useAuth0 } from '@auth0/auth0-react';
+import { Navigate } from 'react-router-dom';
+
+
 
 
 
@@ -14,6 +17,13 @@ import ExpenseDonutChart from "../components/ExpenseDonut";
 
 
 const MyFinances = () => {
+const { isAuthenticated } = useAuth0();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/" />;
+  }
+
+  
   return (
     <>
     <Navbar />
@@ -31,8 +41,9 @@ const MyFinances = () => {
           <IncomeVSExpensesChart />
           <ExpensesBarChart />
           <MonthlyExpensesBarChart />
-          <ExpenseDonutChart />
+          
         <ExpenseDonut />
+        
           <FooterNav />
         </div>
     

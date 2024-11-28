@@ -1,9 +1,18 @@
-import { Link } from "react-router-dom";
+
 import "aos/dist/aos.css"; // Import AOS CSS
+import { useNavigate } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 
 export default function Herosection() {
+  const { loginWithRedirect } = useAuth0();
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    loginWithRedirect();
+  };
+
   return (
     <div className="bg-gray-50">
 
@@ -57,9 +66,9 @@ export default function Herosection() {
   
     <section className="bg-green-500 text-white text-center py-16">
         <h2 className="text-3xl font-extrabold mb-6" data-aos="fade-up">Start Managing Your Finances Today!</h2>
-        <Link to="/my-finances" className="bg-white text-green-500 py-3 px-6 rounded-lg text-xl font-semibold transition-all hover:bg-green-600 hover:text-white" data-aos="fade-up" data-aos-delay="400">
+        <button  onClick={handleGetStarted} className="bg-white text-green-500 py-3 px-6 rounded-lg text-xl font-semibold transition-all hover:bg-green-600 hover:text-white" data-aos="fade-up" data-aos-delay="400">
             Get Started
-        </Link>
+        </button>
     </section>
 
     
