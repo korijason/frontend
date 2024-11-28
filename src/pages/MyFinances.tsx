@@ -1,22 +1,26 @@
 // pages/myfinances.tsx
 
+import FooterNav from "../components/FooterNav";
 import Navbar from "../components/Navbar";
-import SideNav from "../components/SideNav";
+
 
 const MyFinances = () => {
   return (
     <>
     <Navbar />
-    <div className="flex">
-      <SideNav />
-      <div className="flex-1 p-6 items-center justify-center w-full">
-        <h1 className="text-2xl font-semibold w-full">Welcome to My Finances</h1>
-        <p>Take a look at your finance records!</p>
+   
+    <div className="flex flex-col p-4 justify-center items-center" >
+        <h2 className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-br from-green-500 to-black ">MyFinances</h2>
+        <p>Take A Look At Your Financial Records!</p>
+        </div>
+      
+        
+        
         <div className="mt-6">
           {/* You can display either Budgets, Incomes, or Expenses here based on the route */}
+          <FooterNav />
         </div>
-      </div>
-    </div>
+    
     </>
   );
 };

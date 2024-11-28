@@ -2,6 +2,7 @@
 
 import Navbar from "../components/Navbar";
 import IncomeForm from "../components/IncomeForm";
+import FooterNav from "../components/FooterNav";
 
 const Incomes = () => {
   return (
@@ -13,6 +14,7 @@ const Incomes = () => {
         </div>
         {/* Display your income information here */}
         <IncomeForm />
+        <FooterNav />
       </div>
     </>
   );

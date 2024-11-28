@@ -1,33 +1,31 @@
-// components/SideNav.tsx
+// components/FooterNav.tsx
 
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom"; // if you are using Next.js, use Link component for navigation
 
-const SideNav = () => {
+const FooterNav = () => {
   return (
-    <div className="flex">
-      <div className="bg-dark-green h-screen w-64 p-5 text-white border border-black rounded-sm bg-gradient-to-br from-green-500 to-white">
-        <h2 className="text-xl font-semibold mb-6">MyFedha</h2>
-        
-        <ul>
-          <li className="mb-32">
-            <Link to="/budgets">
-              <a className="hover:bg-green-900 rounded-lg p-2 block">Budgets</a>
-            </Link>
-          </li>
-          <li className="mb-32">
-            <Link to="/incomes">
-              <a className="hover:bg-green-900 rounded-lg p-2 block">Incomes</a>
-            </Link>
-          </li>
-          <li className="mb-32">
-            <Link to="/expenses">
-              <a className="hover:bg-green-900 rounded-lg p-2 block">Expenses</a>
-            </Link>
-          </li>
-        </ul>
+    <div className="fixed bottom-0 left-0 w-full bg-gradient-to-br from-white to-green-800 py-2 shadow-lg">
+      <div className="flex justify-around items-center">
+        <Link to="/incomes">
+          <button className="px-3 py-1 bg-transparent border-2 border-white text-white rounded-full hover:bg-white hover:text-green-600 transition duration-300">
+            Incomes
+          </button>
+        </Link>
+
+        <Link to="/budgets">
+          <button className="px-3 py-1 bg-transparent border-2 border-white text-white rounded-full hover:bg-white hover:text-green-600 transition duration-300">
+            Budgets
+          </button>
+        </Link>
+
+        <Link to="/expenses">
+          <button className="px-3 py-1 bg-transparent border-2 border-white text-white rounded-full hover:bg-white hover:text-green-600 transition duration-300">
+            Expenses
+          </button>
+        </Link>
       </div>
     </div>
   );
 };
 
-export default SideNav;
+export default FooterNav;
