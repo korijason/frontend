@@ -10,7 +10,7 @@ export default function Herosection() {
  
     <section className="relative bg-gradient-to-r from-blue-500 to-green-500 text-white py-24">
       
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{backgroundImage: "url('https://via.placeholder.com/1600x900')"}}></div>
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{backgroundImage: "url('https://unsplash.com/photos/a-dollar-bill-with-a-plant-growing-out-of-it-Y_PgbgGMfNs)"}}></div>
 
        
         <div className="relative container mx-auto px-4 text-center z-10">

@@ -5,6 +5,10 @@ import Navbar from "../components/Navbar";
 import IncomeVSExpensesChart from "../components/IncomeVSExpensesChart";
 import ExpensesBarChart from "../components/ExpensesBarChart";
 import MonthlyExpensesBarChart from "../components/MonthlyExpenses";
+import ExpenseDonut from "../components/ExpDonut";
+import ExpenseDonutChart from "../components/ExpenseDonut";
+
+
 
 
 
@@ -27,6 +31,8 @@ const MyFinances = () => {
           <IncomeVSExpensesChart />
           <ExpensesBarChart />
           <MonthlyExpensesBarChart />
+          <ExpenseDonutChart />
+        <ExpenseDonut />
           <FooterNav />
         </div>
     
