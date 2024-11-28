@@ -123,9 +123,9 @@ const Budgets = () => {
                 background: `linear-gradient(to right, white, ${generateRandomColor()})`,
               }} // Set gradient color for each budget
             >
-              <p className="text-lg font-semibold">{budget.budgetName}</p>
-              <p className="text-sm text-gray-500">Description: {budget.description}</p>
-              <p className="text-sm text-gray-500">Amount: ${budget.amount}</p>
+              <p className="text-lg text-black font-bold">{budget.budgetName}</p>
+              <p className="text-sm text-black font-semibold ">Description: {budget.description}</p>
+              <p className="text-sm text-black font-semibold ">Amount: ${budget.amount}</p>
             </div>
           ))}
         </div>
