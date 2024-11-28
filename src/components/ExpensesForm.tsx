@@ -25,33 +25,35 @@ const Expenses = () => {
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+  
+    // Basic validation to ensure all fields are filled
     if (!type || !expenseName || !amount || !date) {
-      return; // Basic validation to ensure all fields are filled
+      return;
     }
-
+  
     const newExpense = {
       name: expenseName,
       type,
       amount: parseFloat(amount),
       date,
     };
-    console.log("New expense:", newExpense);
-    await addExpense(newExpense);
-
+   
+  
     try {
-      await addExpense(newExpense); // Send data to backend
-      fetchExpenses(); // Refresh the expense list
+      // Send data to backend only once
+      await addExpense(newExpense);
+      fetchExpenses(); // Refresh the expense list after successful submission
     } catch (error) {
       console.error("Error adding expense:", error);
     }
-
+  
     // Reset form fields
     setExpenseName("");
     setType("");
     setAmount("");
     setDate("");
   };
+  
 
   // Function to get the color based on expense type
   const getColorForType = (type: string) => {
@@ -149,9 +151,9 @@ const Expenses = () => {
               className="p-4 rounded-lg"
               style={{ backgroundColor: getColorForType(expense.type) }} // Dynamic color based on type
             >
-              <p className="text-lg font-bold">{expense.name}</p>
-              <p className="text-sm font-semibold text-black">Amount: ${expense.amount}</p>
-              <p className="text-sm font-semibold text-black">Date: {expense.date}</p>
+              <p className="text-lg font-semibold">{expense.name}</p>
+              <p className="text-sm text-gray-500">Amount: ${expense.amount}</p>
+              <p className="text-sm text-gray-500">Date: {expense.date}</p>
             </div>
           ))}
         </div>

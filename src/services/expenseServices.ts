@@ -15,6 +15,11 @@ export const addExpense = async (expense: {
   amount: number;
   date: string;
 }) => {
-  const response = await axios.post(API_URL, expense);
-  return response.data;
+  try {
+    const response = await axios.post(API_URL, expense);
+    return response.data;
+  } catch (error) {
+    console.error('Error posting expense:', error);
+    throw error; // Optional: handle error as needed
+  }
 };
