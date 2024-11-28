@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/expenses";
+const API_URL = "http://localhost:5000/api/expense";
 
 // Get all expense records
 export const getExpenses = async () => {

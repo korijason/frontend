@@ -36,6 +36,8 @@ const Expenses = () => {
       amount: parseFloat(amount),
       date,
     };
+    console.log("New expense:", newExpense);
+    await addExpense(newExpense);
 
     try {
       await addExpense(newExpense); // Send data to backend

@@ -1,16 +1,5 @@
-// pages/budgets.tsx
-
-import { useState } from "react";
-
-// Function to generate random color
-const generateRandomColor = () => {
-  const letters = "0123456789ABCDEF";
-  let color = "#";
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-};
+import React, { useState, useEffect } from "react";
+import { getBudgets, addBudget } from "../services/budgetServices";
 
 const Budgets = () => {
   const [budgets, setBudgets] = useState<any[]>([]); // To store budget entries
@@ -18,33 +7,56 @@ const Budgets = () => {
   const [description, setDescription] = useState(""); // For Budget Description
   const [amount, setAmount] = useState(""); // For Amount
 
-  // Function to handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  // Fetch existing budgets on component load
+  useEffect(() => {
+    fetchBudgets();
+  }, []);
+
+  const fetchBudgets = async () => {
+    try {
+      const data = await getBudgets(); // Fetch budgets from backend
+      setBudgets(data);
+    } catch (error) {
+      console.error("Error fetching budgets:", error);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validation to ensure all fields are filled
-    if (!budgetName || !description || !amount) {
+    // Validation
+    if (!budgetName || !description || !amount || isNaN(parseFloat(amount))) {
+      alert("Please fill all fields with valid data.");
       return;
     }
 
-    // Generate random color for the gradient
-    const randomColor = generateRandomColor();
-
-    // New budget object
     const newBudget = {
-      budgetName,
+      name: budgetName,
       description,
       amount: parseFloat(amount),
-      color: randomColor, // Set gradient color
     };
+   
 
-    // Update budgets state to include the new budget
-    setBudgets([...budgets, newBudget]);
+    try {
+      await addBudget(newBudget); // Send data to backend
+      fetchBudgets(); // Refresh budget list
+    } catch (error) {
+      console.error("Error adding budget:", error);
+    }
 
     // Reset form fields
     setBudgetName("");
     setDescription("");
     setAmount("");
+  };
+
+  const generateRandomColor = () => {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
   };
 
   return (
@@ -90,8 +102,6 @@ const Budgets = () => {
             />
           </div>
 
-          
-
           <button
             type="submit"
             className="w-full bg-dark-green text-white py-2 rounded-lg hover:bg-green-600 transition duration-200"
@@ -105,18 +115,17 @@ const Budgets = () => {
       <div className="bg-white p-4 rounded-lg shadow-md">
         <h2 className="text-xl font-semibold mb-4">Budget Records</h2>
         <div className="space-y-4">
-          {budgets.map((budget, index) => (
+          {budgets.map((budget) => (
             <div
-              key={index}
+              key={budget._id} // Use unique ID from backend
               className="p-4 rounded-lg"
               style={{
-                background: `linear-gradient(to right, white, ${budget.color})`,
+                background: `linear-gradient(to right, white, ${generateRandomColor()})`,
               }} // Set gradient color for each budget
             >
               <p className="text-lg font-semibold">{budget.budgetName}</p>
               <p className="text-sm text-gray-500">Description: {budget.description}</p>
               <p className="text-sm text-gray-500">Amount: ${budget.amount}</p>
-              <p className="text-sm text-gray-500">Page: {budget.page}</p>
             </div>
           ))}
         </div>

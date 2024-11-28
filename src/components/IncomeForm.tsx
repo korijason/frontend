@@ -1,6 +1,5 @@
-// components/IncomeForm.tsx
-
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getIncomes, addIncome } from "../services/incomeService";
 
 const Incomes = () => {
   const [incomes, setIncomes] = useState<any[]>([]); // To store income entries
@@ -8,33 +7,54 @@ const Incomes = () => {
   const [amount, setAmount] = useState(""); // For the Amount
   const [date, setDate] = useState(""); // For the Date
 
-  // Function to generate random color
-  const generateRandomColor = () => {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
+  // Fetch existing incomes on component load
+  useEffect(() => {
+    fetchIncomes();
+  }, []);
+
+  const fetchIncomes = async () => {
+    try {
+      const data = await getIncomes(); // Fetch incomes from backend
+      setIncomes(data);
+    } catch (error) {
+      console.error("Error fetching incomes:", error);
     }
-    return color;
   };
 
   // Handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!source || !amount || !date) {
+      return; // Basic validation to ensure all fields are filled
+    }
+
     const newIncome = {
-      source,
+      name: source,
       amount: parseFloat(amount),
       date,
-      color: generateRandomColor(), // Assign a random color to each entry
     };
 
-    // Update incomes state to display the new income
-    setIncomes([...incomes, newIncome]);
+    try {
+      await addIncome(newIncome); // Send data to backend
+      fetchIncomes(); // Refresh income list
+    } catch (error) {
+      console.error("Error adding income:", error);
+    }
 
     // Reset form fields
     setSource("");
     setAmount("");
     setDate("");
+  };
+  // Function to generate random color
+  const generateRandomColor = () => {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
   };
 
   return (
@@ -89,15 +109,15 @@ const Incomes = () => {
       <div className="bg-white p-4 rounded-lg shadow-md">
         <h2 className="text-xl font-semibold mb-4">Income Records</h2>
         <div className="space-y-4">
-          {incomes.map((income, index) => (
+          {incomes.map((income) => (
             <div
-              key={index}
+              key={income._id} // Use unique ID from backend
               className="p-4 rounded-lg"
-              style={{ backgroundColor: income.color }} // Dynamic color for each entry
+              style={{ backgroundColor: generateRandomColor() }} // Dynamic color
             >
-              <p className="text-lg font-semibold">{income.source}</p>
-              <p className="text-sm text-gray-500">Amount: ${income.amount}</p>
-              <p className="text-sm text-gray-500">Date: {income.date}</p>
+              <p className="text-lg text-black font-semibold">{income.name}</p>
+              <p className="text-sm text-black">Amount: ${income.amount}</p>
+              <p className="text-sm text-black">Date: {income.date}</p>
             </div>
           ))}
         </div>
