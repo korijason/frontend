@@ -115,9 +115,9 @@ const Incomes = () => {
               className="p-4 rounded-lg"
               style={{ backgroundColor: generateRandomColor() }} // Dynamic color
             >
-              <p className="text-lg text-black font-semibold">{income.name}</p>
-              <p className="text-sm text-black">Amount: ${income.amount}</p>
-              <p className="text-sm text-black">Date: {income.date}</p>
+              <p className="text-lg text-black font-bold">{income.name}</p>
+              <p className="text-sm text-black font-semibold">Amount: ${income.amount}</p>
+              <p className="text-sm text-black font-semibold">Date: {income.date}</p>
             </div>
           ))}
         </div>

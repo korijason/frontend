@@ -149,9 +149,9 @@ const Expenses = () => {
               className="p-4 rounded-lg"
               style={{ backgroundColor: getColorForType(expense.type) }} // Dynamic color based on type
             >
-              <p className="text-lg font-semibold">{expense.name}</p>
-              <p className="text-sm text-gray-500">Amount: ${expense.amount}</p>
-              <p className="text-sm text-gray-500">Date: {expense.date}</p>
+              <p className="text-lg font-bold">{expense.name}</p>
+              <p className="text-sm font-semibold text-black">Amount: ${expense.amount}</p>
+              <p className="text-sm font-semibold text-black">Date: {expense.date}</p>
             </div>
           ))}
         </div>
