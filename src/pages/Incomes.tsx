@@ -1,25 +1,21 @@
 // pages/incomes.tsx
 
 import Navbar from "../components/Navbar";
-import SideNav from "../components/SideNav";
-import { useState } from "react";
 import IncomeForm from "../components/IncomeForm";
 
-
 const Incomes = () => {
-    return (
-        <>
-        <Navbar    />
+  return (
+    <>
+      <Navbar />
       <div>
-        <SideNav    />
-        <h2 className="text-xl font-semibold">Incomes</h2>
-        <IncomeForm />  
+        <div className="flex flex-col p-4 justify-center items-center" >
+        <h2 className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-br from-green-500 to-black ">Your Incomes</h2>
+        </div>
         {/* Display your income information here */}
-        
+        <IncomeForm />
       </div>
-      </>
-    );
-  };
-  
-  export default Incomes;
-  
+    </>
+  );
+};
+
+export default Incomes;

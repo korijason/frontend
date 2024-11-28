@@ -1,16 +1,16 @@
 // pages/incomes.tsx
 
 import Navbar from "../components/Navbar";
-import SideNav from "../components/SideNav";
+import ExpensesForm from "../components/ExpensesForm";
 
 const Incomes = () => {
     return (
         <>
         <Navbar    />
       <div>
-        <SideNav    />
-        <h2 className="text-xl font-semibold">Incomes</h2>
-        {/* Display your income information here */}
+        {/* Display your expenses information here */}
+        <ExpensesForm />
+        
       </div>
       </>
     );
