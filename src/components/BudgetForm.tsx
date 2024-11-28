@@ -17,14 +17,13 @@ const Budgets = () => {
   const [budgetName, setBudgetName] = useState(""); // For Budget Name
   const [description, setDescription] = useState(""); // For Budget Description
   const [amount, setAmount] = useState(""); // For Amount
-  const [page, setPage] = useState(""); // For Page
 
   // Function to handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     // Validation to ensure all fields are filled
-    if (!budgetName || !description || !amount || !page) {
+    if (!budgetName || !description || !amount) {
       return;
     }
 
@@ -36,7 +35,6 @@ const Budgets = () => {
       budgetName,
       description,
       amount: parseFloat(amount),
-      page,
       color: randomColor, // Set gradient color
     };
 
@@ -47,7 +45,6 @@ const Budgets = () => {
     setBudgetName("");
     setDescription("");
     setAmount("");
-    setPage("");
   };
 
   return (
@@ -93,17 +90,7 @@ const Budgets = () => {
             />
           </div>
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">Page</label>
-            <input
-              type="text"
-              value={page}
-              onChange={(e) => setPage(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-              placeholder="Page (e.g., Household)"
-              required
-            />
-          </div>
+          
 
           <button
             type="submit"
