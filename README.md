@@ -1,2 +1,2 @@
-# frontend
- The Frontend for my Finance Tracker App
+# Frontend
+ The Frontend for MyFedha Finance Manager App
