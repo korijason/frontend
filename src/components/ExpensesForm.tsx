@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getExpenses, addExpense } from "../services/expenseServices";
 
+
 const Expenses = () => {
   const [expenses, setExpenses] = useState<any[]>([]); // To store expenses entries
   const [expenseName, setExpenseName] = useState(""); // For Expense Name
