@@ -7,7 +7,7 @@ import MyFinances from "./pages/MyFinances";
 import Expenses from "./pages/Expenses";
 import Incomes from "./pages/Incomes";
 import Budgets from "./pages/Budgets";
-import CallbackPage from "./pages/Callback";
+
 
 const domain = "dev-i8sijtgjr86lo1en.us.auth0.com"; // from Auth0 dashboard
 const clientId = "IzHWElQaQFJShQdXtqRp05voViTd7Kk5"; // from Auth0 dashboard
@@ -23,7 +23,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/my-finances" element={<MyFinances />} />
-          <Route path="/callback" element={<CallbackPage />} />
+          
           <Route path="/expenses" element={<Expenses />} />
 
           <Route path="/incomes" element={<Incomes />} />
