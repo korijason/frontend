@@ -23,3 +23,14 @@ export const addExpense = async (expense: {
     throw error; // Optional: handle error as needed
   }
 };
+
+// Delete an existing budget record
+export const deleteExpense = async (id: string) => {
+  await axios.delete(`/api/expense/${id}`);
+};
+
+// Update an existing budget record
+export const updateExpense = async (id: string, updatedData: any) => {
+  await axios.put(`/api/expense/${id}`, updatedData);
+};
+
