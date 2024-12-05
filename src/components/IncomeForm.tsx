@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import { getIncomes, addIncome } from "../services/incomeService";
 
-// Use the live backend API URL
-const BASE_URL = "https://myfedha-backend.onrender.com/api";
 
 const Incomes = () => {
   const [incomes, setIncomes] = useState<any[]>([]); // To store income entries
   const [source, setSource] = useState(""); // For the Income Name
   const [amount, setAmount] = useState(""); // For the Amount
   const [date, setDate] = useState(""); // For the Date
-  const [error, setError] = useState(""); // For handling errors
 
   // Fetch existing incomes on component load
   useEffect(() => {
@@ -18,12 +15,10 @@ const Incomes = () => {
 
   const fetchIncomes = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/income`);
-      setIncomes(response.data); // Update incomes from backend response
-      setError(""); // Clear any previous errors
+      const data = await getIncomes(); // Fetch incomes from backend
+      setIncomes(data);
     } catch (error) {
       console.error("Error fetching incomes:", error);
-      setError("There was an error fetching income data.");
     }
   };
 
@@ -32,8 +27,7 @@ const Incomes = () => {
     e.preventDefault();
 
     if (!source || !amount || !date) {
-      setError("All fields are required!"); // Show error if fields are empty
-      return;
+      return; // Basic validation to ensure all fields are filled
     }
 
     const newIncome = {
@@ -43,18 +37,17 @@ const Incomes = () => {
     };
 
     try {
-      await axios.post(`${BASE_URL}/income`, newIncome); // Post new income to backend
-      fetchIncomes(); // Refresh income list after submission
-      setSource(""); // Reset form fields
-      setAmount("");
-      setDate("");
-      setError(""); // Clear error after successful submission
+      await addIncome(newIncome); // Send data to backend
+      fetchIncomes(); // Refresh income list
     } catch (error) {
       console.error("Error adding income:", error);
-      setError("There was an error adding the income.");
     }
-  };
 
+    // Reset form fields
+    setSource("");
+    setAmount("");
+    setDate("");
+  };
   // Function to generate random color
   const generateRandomColor = () => {
     const letters = "0123456789ABCDEF";
@@ -68,13 +61,6 @@ const Incomes = () => {
   return (
     <div className="flex flex-col p-6">
       <h1 className="text-2xl font-semibold mb-4">Add New Income</h1>
-
-      {/* Error Message */}
-      {error && (
-        <div className="mb-4 text-red-600 font-semibold">
-          <p>{error}</p>
-        </div>
-      )}
 
       {/* Form */}
       <div className="bg-white p-4 rounded-lg shadow-md mb-6">
